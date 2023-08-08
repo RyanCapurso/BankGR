@@ -1,11 +1,12 @@
-﻿using BankGR.Servicos;
+﻿using BankGR.Menu;
+using BankGR.Servicos;
 
 BankGRServicos servicos = new BankGRServicos();
 
 bool executa = true;
 while (executa)
 {
-    int opcao = Exibir();
+    int opcao = Menu.Exibir();
 
     switch(opcao)
     {
@@ -15,7 +16,10 @@ while (executa)
         case 1:
             break;
 
-        case 2:
+        case 5:
+            Console.Clear();
+            Console.WriteLine("...  Obrigado por utilizar o BankGR  ...");
+            Environment.Exit(0);
             executa = false;
             break;
     }

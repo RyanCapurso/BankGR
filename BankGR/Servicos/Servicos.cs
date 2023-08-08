@@ -7,54 +7,6 @@ public class BankGRServicos
 {
     Repositorio<ContaCorrenteModel> repositorio = new();
 
-    public void ExibirMenu()
-    {
-        Console.Clear();
-        Console.WriteLine("===================================");
-        Console.WriteLine("===                             ===");
-        Console.WriteLine("===  Seja Bem vindo ao BancoGR  ===");
-        Console.WriteLine("===  Selecione uma opção        ===");
-        Console.WriteLine("===                             ===");
-        Console.WriteLine("===  1 - Cadastrar Conta        ===");
-        Console.WriteLine("===  2 - Listar Contas          ===");
-        Console.WriteLine("===  3 - Pesquisar Contas       ===");
-        Console.WriteLine("===  4 - Excluir Conta          ===");
-        Console.WriteLine("===  5 - Sair                   ===");
-        Console.WriteLine("===                             ===");
-        Console.WriteLine("===================================");
-
-        Console.Write("Opção Escolhida: ");
-
-        int opcao = int.Parse(Console.ReadLine() ?? "0"); //  "??" Estudar
-
-        switch (opcao)
-        {
-            case 1:
-                CadastrarContaCorrente();
-                break;
-            case 2:
-                ListarContaCorrente();
-
-                break;
-            case 3:
-                PesquisarContaCorrente();
-                break;
-            case 4:
-                ExcluirContaCorrente();
-                break;
-            case 5:
-                Console.Clear();
-                Console.WriteLine("...  Obrigado por utilizar o BankGR  ...");
-                Environment.Exit(0);
-                break;
-            default:
-                Console.WriteLine("...  Opção Invalida  ...");
-                Thread.Sleep(1000);
-                ExibirMenu();
-                break;
-        }
-    }
-
     private void ExcluirContaCorrente()
     {
 
