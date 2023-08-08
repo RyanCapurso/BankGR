@@ -14,11 +14,11 @@ while (executa)
     switch(opcao)
     {
         case 1:
-            repositorio.Adicionar(servicos.CadastrarContaCorrente());
+            servicos.CadastrarContaCorrente();
             break;
         
         case 2:
-            repositorio.ObterTodos();
+            servicos.ListarContaCorrente();
             break;
 
         case 5:

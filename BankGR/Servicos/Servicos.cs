@@ -1,11 +1,13 @@
 ﻿using BankGR.Entidades;
 using BankGR.Repositorios;
+using System.ComponentModel;
 
 namespace BankGR.Servicos;
 
 public class BankGRServicos
 {
-    private void Excluir()
+    Repositorio<ContaCorrenteModel> repositorio = new();
+    /*private void Excluir()
     {
 
         bool validador = false;
@@ -51,19 +53,8 @@ public class BankGRServicos
                 validador = false;
             }
         } while (validador == true);
-    }
-
-    List<ContaCorrenteModel> _listaDeContas = new() { new ContaCorrenteModel(0,"Ryan","874","7777",5000),
-        new ContaCorrenteModel(1,"Luiz", "789", "99999999", 50068),
-        new ContaCorrenteModel()
-        {
-            Nome = "Osiel",
-            Saldo = 90.0,
-            DataCadastro = DateTime.Now,
-            Cpf = "11111111111",
-            Agencia = "8765"
-        }};
-    public ContaCorrenteModel CadastrarContaCorrente()
+    }*/
+    public void CadastrarContaCorrente()
     {
 
         Console.Clear();
@@ -94,8 +85,10 @@ public class BankGRServicos
         Thread.Sleep(1000);
         Console.WriteLine("\n... Conta Cadastrada com Sucesso ...\n");
 
-        return conta;
+        repositorio.Adicionar(conta);
+
     }
+    
     public void ListarContaCorrente()
     {
         Console.Clear();
@@ -105,18 +98,17 @@ public class BankGRServicos
         Console.WriteLine("===                      ===");
         Console.WriteLine("============================");
 
-        if (_listaDeContas.Count == 0)
-        {
-            Console.WriteLine("... No momento o sistema não possui contas ...");
-            Console.ReadKey();
-            return;
-        }
-        foreach (ContaCorrenteModel item in _listaDeContas)
+        
+        
+        foreach (ContaCorrenteModel item in repositorio.ObterTodos())
         {
             Console.WriteLine(item.ToString());
-            Console.ReadKey();
         }
+
+        Console.WriteLine("Pressione qualquer tecla para voltar ao menu...");
+        Console.ReadKey(); // Aguarda uma tecla ser pressionada antes de voltar ao menu
     }
+
 
 
 
