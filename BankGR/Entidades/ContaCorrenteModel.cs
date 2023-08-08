@@ -1,11 +1,11 @@
 ﻿
 namespace BankGR.Entidades;
 
-internal class ContaCorrenteModel
+public class ContaCorrenteModel
 {
     public ContaCorrenteModel() { }
 
-    public ContaCorrenteModel(int id, string? nome, int agencia, string cpf, double saldo)
+    public ContaCorrenteModel(int id, string? nome, string agencia, string cpf, double saldo)
     {
         Id = id;
         Nome = nome;
@@ -17,7 +17,7 @@ internal class ContaCorrenteModel
 
     public int Id { get; set; } = 0;
     public string? Nome { get; set; } = string.Empty;
-    public int Agencia { get; set; } = 0;
+    public string Agencia { get; set; } = string.Empty;
     public string Cpf { get; set; } = string.Empty;
     public double Saldo { get; set; } = 0.00;
     public DateTime DataCadastro { get; set; }

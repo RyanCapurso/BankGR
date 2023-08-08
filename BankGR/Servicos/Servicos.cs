@@ -5,9 +5,7 @@ namespace BankGR.Servicos;
 
 public class BankGRServicos
 {
-    Repositorio<ContaCorrenteModel> repositorio = new();
-
-    private void ExcluirContaCorrente()
+    private void Excluir()
     {
 
         bool validador = false;
@@ -21,7 +19,7 @@ public class BankGRServicos
             Console.WriteLine("=============================");
 
             Console.WriteLine("Informe o CPF da Conta: ");
-            int cpfDaConta = int.Parse(Console.ReadLine() ?? "");
+            string cpfDaConta = Console.ReadLine() ?? "000000000000";
             ContaCorrenteModel? conta = null;
 
             foreach (var item in _listaDeContas)
@@ -40,6 +38,7 @@ public class BankGRServicos
             {
                 Console.WriteLine("...  Conta para remoção não encontrada  ...");
             }
+
             Thread.Sleep(1000);
             Console.WriteLine("Deseja Excluir mais alguma conta? Y ou N: ");
             string opcao = Console.ReadLine()?.ToLower() ?? "n";
@@ -52,119 +51,50 @@ public class BankGRServicos
                 validador = false;
             }
         } while (validador == true);
-        ExibirMenu();
     }
 
-    private void PesquisarContaCorrente()
-    {
-        Console.Clear();
-        Console.WriteLine("============================");
-        Console.WriteLine("===                      ===");
-        Console.WriteLine("===  Pesquisa de Contas  ===");
-        Console.WriteLine("===                      ===");
-        Console.WriteLine("============================\n");
-        Console.WriteLine("1 -- CPF      2 -- NOME      3 -- AGENCIA");
-        Console.Write("Deseja qual método de Pesquisa? ");
-
-        int opcao = int.Parse(Console.ReadLine() ?? "0");
-
-        switch (opcao)
-        {
-            case 1:
-                Console.Write("Digite o CPF: ");
-                string? cpfDaConta = Console.ReadLine() ?? "";
-
-                if (cpfDaConta != null)
-                {
-                    var obj = _listaDeContas.Where(i => i.Cpf.Equals(cpfDaConta)).FirstOrDefault();
-
-                    if (obj is not null)
-                        Console.WriteLine(obj);
-                    else
-                        Console.WriteLine("Nao encontrado");
-                }
-
-                foreach (var obj in _listaDeContas.Where(i => i.Cpf.Equals(cpfDaConta)))
-                {
-                    Console.WriteLine(obj);
-                }
-
-                //PesquisarContaCorrentePorCPF(cpfDaConta);
-                break; 
-            case 2:
-                break; 
-            case 3:
-                break;
-            default:
-                break;
-        }
-    }
-
-    /*private ContaCorrente PesquisarContaCorrentePorCPF(int cpfDaContaCorrente)
-    {
-        return _listaDeContas.Where(Cpf => cpf.Cpf == cpfDaContaCorrente);
-    }*/
-
-    List<ContaCorrenteModel> _listaDeContas = new() { new ContaCorrenteModel(0,"Ryan",458,"7777",5000), 
-        new ContaCorrenteModel(1,"Luiz", 789, "99999999", 50068),
+    List<ContaCorrenteModel> _listaDeContas = new() { new ContaCorrenteModel(0,"Ryan","874","7777",5000),
+        new ContaCorrenteModel(1,"Luiz", "789", "99999999", 50068),
         new ContaCorrenteModel()
         {
             Nome = "Osiel",
             Saldo = 90.0,
             DataCadastro = DateTime.Now,
             Cpf = "11111111111",
-            Agencia = 8765
+            Agencia = "8765"
         }};
-    public void CadastrarContaCorrente()
+    public ContaCorrenteModel CadastrarContaCorrente()
     {
-        bool Validador = false;
-        do
-        {
-            Console.Clear();
-            Console.WriteLine("============================");
-            Console.WriteLine("===                      ===");
-            Console.WriteLine("===  Cadastro de Contas  ===");
-            Console.WriteLine("===                      ===");
-            Console.WriteLine("============================");
-            Console.WriteLine("\nDigite as Seguintes Informações\n");
-            ContaCorrenteModel conta = new ContaCorrente("", 0, 0, 0);
-            Console.Write("Nome: ");
-            string _nome = Console.ReadLine() ?? "0";
-            conta.Nome = _nome;
 
+        Console.Clear();
+        Console.WriteLine("============================");
+        Console.WriteLine("===                      ===");
+        Console.WriteLine("===  Cadastro de Contas  ===");
+        Console.WriteLine("===                      ===");
+        Console.WriteLine("============================");
+        Console.WriteLine("\nDigite as Seguintes Informações\n");
 
-            Console.Write("Agencia: ");
-            int _agencia = int.Parse(Console.ReadLine()!);
-            conta.Agencia = _agencia;
+        ContaCorrenteModel conta = new ContaCorrenteModel();
+        Console.Write("Nome: ");
+        string nome = Console.ReadLine() ?? "0";
+        conta.Nome = nome;
 
-            Console.Write("CPF: ");
-            int _cpf = int.Parse(Console.ReadLine()!);
-            conta.Cpf = _cpf;
+        Console.Write("Agencia: ");
+        string agencia = Console.ReadLine() ?? "0000-X";
+        conta.Agencia = agencia;
 
+        Console.Write("CPF: ");
+        string cpf = Console.ReadLine() ?? "00000000000";
+        conta.Cpf = cpf;
 
-            Console.Write("Saldo Inicial: ");
-            int _saldo = int.Parse(Console.ReadLine()!);
-            conta.Saldo = _saldo;
+        Console.Write("Saldo Inicial: ");
+        double saldo = double.Parse(Console.ReadLine() ?? "0.00");
+        conta.Saldo = saldo;
 
-            repositorio.Adicionar(conta);
-            _listaDeContas.Add(conta);
-            Thread.Sleep(1000);
-            Console.WriteLine("\n... Conta Cadastrada com Sucesso ...\n");
+        Thread.Sleep(1000);
+        Console.WriteLine("\n... Conta Cadastrada com Sucesso ...\n");
 
-            Console.Write("Deseja Cadastrar outra conta? Y ou N : ");
-
-            string opcao = Console.ReadLine() ?? "N";
-            if (opcao == "y") 
-            {
-                Validador = true; 
-            }
-            else if (opcao == "n")
-            {
-                
-                Validador = false;
-            }
-        } while (Validador == true);
-        ExibirMenu();
+        return conta;
     }
     public void ListarContaCorrente()
     {
@@ -186,7 +116,6 @@ public class BankGRServicos
             Console.WriteLine(item.ToString());
             Console.ReadKey();
         }
-        ExibirMenu();
     }
 
 

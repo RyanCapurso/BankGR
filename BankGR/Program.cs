@@ -1,6 +1,9 @@
-﻿using BankGR.Menu;
+﻿using BankGR.Entidades;
+using BankGR.Menu;
+using BankGR.Repositorios;
 using BankGR.Servicos;
 
+Repositorio<ContaCorrenteModel> repositorio = new();
 BankGRServicos servicos = new BankGRServicos();
 
 bool executa = true;
@@ -10,10 +13,12 @@ while (executa)
 
     switch(opcao)
     {
-        case 0:
+        case 1:
+            repositorio.Adicionar(servicos.CadastrarContaCorrente());
             break;
         
-        case 1:
+        case 2:
+            repositorio.ObterTodos();
             break;
 
         case 5:
