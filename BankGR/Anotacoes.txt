@@ -1,0 +1,37 @@
+entidade (conta corrente)
+
+repositorio (lista de conta corrente)
+	- Adicionar
+	- Excluir
+	- Alterar
+	- ObterPorID
+	- ObterTodos
+
+servicos
+	- Adicionar
+	- Excluir
+	- Alterar
+	- ObterPorID
+	- ObterTodos
+
+menu
+	Exibir
+
+
+Bussines, Core, Main
+
+
+
+SOLID
+
+
+SomarNumeros(a, b)
+{
+	int soma = a+b;
+	if (soma >=  100)
+		return;
+
+	SomarNumeros(soma, 10);
+}
+
+SomarNumeros(10, 20);
