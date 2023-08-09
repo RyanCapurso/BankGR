@@ -147,15 +147,52 @@ public class BankGRServicos
     }*/
     public void PesquisarCpf()
     {
-        Console.Clear();
-        Console.WriteLine("============================");
-        Console.WriteLine("=== Pesquisa de Contas ===");
-        Console.WriteLine("============================");
         Console.Write("Digite o CPF da conta: ");
 
         string cpf = Console.ReadLine() ?? string.Empty;
 
         ContaCorrenteModel? contaEncontrada = repositorio.ObterPorId(conta => conta.Cpf == cpf);
+
+        if (contaEncontrada != null)
+        {
+            Console.WriteLine("Conta encontrada:");
+            Console.WriteLine(contaEncontrada.ToString());
+        }
+        else
+        {
+            Console.WriteLine("...  Nenhuma Conta foi encontrada  ...");
+        }
+
+        Console.WriteLine("Pressione qualquer tecla para voltar ao menu...");
+        Console.ReadKey();
+    }
+    public void PesquisarAgencia()
+    {
+        Console.Write("Digite a agencia da conta: ");
+
+        string agencia = Console.ReadLine() ?? string.Empty;
+
+        ContaCorrenteModel? contaEncontrada = repositorio.ObterPorId(conta => conta.Agencia == agencia);
+
+        if (contaEncontrada != null)
+        {
+            Console.WriteLine("Conta encontrada:");
+            Console.WriteLine(contaEncontrada.ToString());
+        }
+        else
+        {
+            Console.WriteLine("...  Nenhuma Conta foi encontrada  ...");
+        }
+
+        Console.WriteLine("Pressione qualquer tecla para voltar ao menu...");
+        Console.ReadKey();
+    }
+    public void PesquisarNome()
+    {
+        Console.Write("Digite o Nome da conta: ");
+
+        string nome = Console.ReadLine() ?? string.Empty;
+        ContaCorrenteModel? contaEncontrada = repositorio.ObterPorId(conta => conta.Nome == nome);
 
         if (contaEncontrada != null)
         {
@@ -186,6 +223,15 @@ public class BankGRServicos
         {
             case 1:
                 PesquisarCpf();
+                break;
+            case 2:
+                PesquisarAgencia();
+                break;
+            case 3:
+                PesquisarNome();
+                break;
+            default: 
+                Console.WriteLine("Digite uma opção válida");
                 break;
         }
     }
