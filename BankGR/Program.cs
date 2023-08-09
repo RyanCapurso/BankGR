@@ -1,9 +1,6 @@
-﻿using BankGR.Entidades;
-using BankGR.Menu;
-using BankGR.Repositorios;
+﻿using BankGR.Menu;
 using BankGR.Servicos;
 
-Repositorio<ContaCorrenteModel> repositorio = new();
 BankGRServicos servicos = new BankGRServicos();
 
 bool executa = true;
@@ -14,17 +11,19 @@ while (executa)
     switch(opcao)
     {
         case 1:
-            servicos.CadastrarContaCorrente();
+            servicos.Cadastrar();
             break;
-        
         case 2:
-            servicos.ListarContaCorrente();
+            servicos.Listar();
             break;
-
+        case 3:
+            servicos.Pesquisar();
+            break;
+        case 4:
+            servicos.Excluir();
+            break;
         case 5:
-            Console.Clear();
-            Console.WriteLine("...  Obrigado por utilizar o BankGR  ...");
-            Environment.Exit(0);
+            servicos.Sair();
             executa = false;
             break;
     }

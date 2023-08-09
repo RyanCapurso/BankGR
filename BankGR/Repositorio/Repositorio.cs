@@ -15,9 +15,13 @@ internal class Repositorio<T>
         return true;
     }
 
-    public T? ObterPorId(T item) 
+    /*public T? ObterPorId(T item) 
     {
         return listaDados.Find(i => i!.Equals(item));
+    }*/
+    public T? ObterPorId(Func<T, bool> predicate)
+    {
+        return listaDados.FirstOrDefault(predicate);
     }
 
     public List<T> ObterTodos()
