@@ -19,6 +19,7 @@ public class ContaCorrenteModel
     public string Cpf { get; set; } = string.Empty;
     public double Saldo { get; set; } = 0.00;
     public string NumeroConta { get; set; } = string.Empty;
+    public string DataDeCriacao { get; set; } = DateTime.Now.ToString("dd/MM/yyyy");
     public override string ToString()
     {
         return $"\n    Agência:             {this.Agencia} \n" +
@@ -26,6 +27,7 @@ public class ContaCorrenteModel
                $"    Titular da Conta:    {this.Nome}      \n" +
                $"    CPF do Titular:      {this.Cpf}       \n" +
                $"    Saldo da Conta:      {this.Saldo}       \n" +
+               $"    Data de Criação:     {this.DataDeCriacao}       \n" +
                $"<=====================================>";
     }
 }

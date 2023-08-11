@@ -277,8 +277,6 @@ namespace BankGR.Servicos
                     Console.WriteLine("\nEscolha o campo a ser alterado:");
                     Console.WriteLine("1 - Nome");
                     Console.WriteLine("2 - Agência");
-                    Console.WriteLine("3 - CPF");
-                    Console.WriteLine("4 - Saldo");
                     Console.Write("Opção: ");
                     int opcaoCampo = int.Parse(Console.ReadLine() ?? "0");
                     switch (opcaoCampo)
@@ -290,21 +288,6 @@ namespace BankGR.Servicos
                         case 2:
                             Console.Write("Nova Agência: ");
                             conta.Agencia = Console.ReadLine() ?? "";
-                            break;
-                        case 3:
-                            Console.Write("Novo CPF: ");
-                            conta.Cpf = Console.ReadLine() ?? "";
-                            break;
-                        case 4:
-                            Console.Write("Novo Saldo: ");
-                            if (double.TryParse(Console.ReadLine(), out double novoSaldo))
-                            {
-                                conta.Saldo = novoSaldo;
-                            }
-                            else
-                            {
-                                Console.WriteLine("Valor de saldo inválido. O saldo não será alterado.");
-                            }
                             break;
                         default:
                             Console.WriteLine("Opção inválida.");
