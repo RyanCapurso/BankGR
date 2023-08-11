@@ -22,7 +22,10 @@ Bussines, Core, Main
 
 
 
-SOLID
+*SOLID
+
+
+DESIGN PATTERNS
 
 
 SomarNumeros(a, b)

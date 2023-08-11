@@ -7,7 +7,6 @@ bool executa = true;
 while (executa)
 {
     int opcao = Menu.Exibir();
-
     switch(opcao)
     {
         case 1:
@@ -23,8 +22,14 @@ while (executa)
             servicos.Excluir();
             break;
         case 5:
+            servicos.Alterar();
+            break;
+        case 6:
             servicos.Sair();
             executa = false;
+            break;
+        case 9:
+            servicos.Destruir();
             break;
     }
 }

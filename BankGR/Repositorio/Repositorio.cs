@@ -8,33 +8,23 @@ internal class Repositorio<T>
     {
         listaDados.Add(item);
     }
-
     public bool Excluir(T item)
     {
         listaDados.Remove(item);
         return true;
     }
-
-    /*public T? ObterPorId(T item) 
-    {
-        return listaDados.Find(i => i!.Equals(item));
-    }*/
-    public T? ObterPorId(Func<T, bool> predicate)
+    public T? ObterPorItem(Func<T, bool> predicate)
     {
         return listaDados.FirstOrDefault(predicate);
     }
-
     public List<T> ObterTodos()
     {
         return listaDados;
     }
-
     public void PersistirDados()
     { }
-
     public void CarregarDados()
     { }
-
     public void DeletarLista()
     {
         listaDados.Clear();

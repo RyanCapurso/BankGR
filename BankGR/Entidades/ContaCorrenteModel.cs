@@ -1,10 +1,8 @@
-﻿
-namespace BankGR.Entidades;
+﻿namespace BankGR.Entidades;
 
 public class ContaCorrenteModel
 {
     public ContaCorrenteModel() { }
-
     public ContaCorrenteModel(int id, string? nome, string agencia, string cpf, double saldo)
     {
         Id = id;
@@ -12,22 +10,22 @@ public class ContaCorrenteModel
         Agencia = agencia;
         Cpf = cpf;
         Saldo = saldo;
-        DataCadastro = DateTime.Now;
-    }
+        NumeroConta = NumeroConta;
 
+    }
     public int Id { get; set; } = 0;
     public string? Nome { get; set; } = string.Empty;
     public string Agencia { get; set; } = string.Empty;
     public string Cpf { get; set; } = string.Empty;
     public double Saldo { get; set; } = 0.00;
-    public DateTime DataCadastro { get; set; }
-
+    public string NumeroConta { get; set; } = string.Empty;
     public override string ToString()
     {
-        return $"\n    Número da Agência:   {this.Agencia} \n" +
-               $"    Saldo da Conta:      {this.Saldo}       \n" +
+        return $"\n    Agência:             {this.Agencia} \n" +
+               $"    Número da Conta:     {this.NumeroConta}       \n" +
                $"    Titular da Conta:    {this.Nome}      \n" +
                $"    CPF do Titular:      {this.Cpf}       \n" +
+               $"    Saldo da Conta:      {this.Saldo}       \n" +
                $"<=====================================>";
     }
 }
