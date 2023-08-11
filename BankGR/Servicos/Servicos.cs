@@ -2,10 +2,9 @@
 using BankGR.Repositorios;
 using BankGR.ValidacoesLibrary;
 
-
 namespace BankGR.Servicos
 {
-    
+
     public class BankGRServicos
     {
         Repositorio<ContaCorrenteModel> repositorio = new Repositorio<ContaCorrenteModel>();
@@ -29,7 +28,7 @@ namespace BankGR.Servicos
                     ContaCorrenteModel? conta = repositorio.ObterPorItem(c => c.NumeroConta.Equals(numeroDaConta));
                     if (conta != null)
                     {
-                        Console.WriteLine(conta.ToString()); 
+                        Console.WriteLine(conta.ToString());
                         Console.Write("  Deseja realmente excluir está conta? Y ou N: ");
                         string escolha = Console.ReadLine()?.ToLower() ?? "n";
                         if (escolha == "y")
@@ -108,7 +107,7 @@ namespace BankGR.Servicos
                     {
                         Console.WriteLine("Erro: " + e.Message);
                     }
-                   
+
                     Console.Write("Saldo Inicial: ");
                     double saldo;
                     if (double.TryParse(Console.ReadLine(), out saldo))
@@ -308,6 +307,76 @@ namespace BankGR.Servicos
             Console.WriteLine("\nPressione qualquer tecla para voltar ao menu...");
             Console.ReadKey();
         }
+        public void Depositar(ContaCorrenteModel ContaEncontrada)
+        {
+            Console.Clear();
+            Console.WriteLine("=============================");
+            Console.WriteLine("===                       ===");
+            Console.WriteLine("===       Depositos       ===");
+            Console.WriteLine("===                       ===");
+            Console.WriteLine("=============================");
+            //Console.Write("Informe o N° da Conta: ");
+            //string numeroDaConta = Console.ReadLine() ?? "";
+            try
+            {
+                var conta = repositorio.ObterPorItem(c => c.NumeroConta.Equals(ContaEncontrada.NumeroConta));
+                if (conta != null)
+                {
+                    Console.WriteLine("Conta encontrada:");
+                    Console.WriteLine(conta.ToString());
+
+
+                    Console.Write("Quanto deseja depositar? R$ ");
+                    double deposito;
+                    if (double.TryParse(Console.ReadLine(), out deposito))
+                    {
+                        conta.Depositar(deposito);
+                        Console.WriteLine($"...  Deposito de R${deposito} efetuado com sucesso!  ...");
+                        Thread.Sleep(1000);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Valor de Deposito inválido. O Deposito não será efetuado");
+                    }
+                }
+            }
+            catch (Exception e) { Console.WriteLine(e.Message); }
+        }
+        public void Sacar()
+        {
+            Console.Clear();
+            Console.WriteLine("=============================");
+            Console.WriteLine("===                       ===");
+            Console.WriteLine("===         Saques        ===");
+            Console.WriteLine("===                       ===");
+            Console.WriteLine("=============================");
+            Console.Write("Informe o N° da Conta: ");
+            string numeroDaConta = Console.ReadLine() ?? "";
+            try
+            {
+                var conta = repositorio.ObterPorItem(c => c.NumeroConta.Equals(numeroDaConta));
+                if (conta != null)
+                {
+                    Console.WriteLine("Conta encontrada:");
+                    Console.WriteLine(conta.ToString());
+
+
+                    Console.Write("Quanto deseja Sacar? R$ ");
+                    double saque;
+                    if (double.TryParse(Console.ReadLine(), out saque))
+                    {
+                        conta.Sacar(saque);
+                        Console.WriteLine($"...  Saque de R${saque} efetuado com sucesso!  ...");
+                        Thread.Sleep(1000);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Valor de Saque inválido. O Saque não será efetuado");
+                    }
+                }
+            }
+            catch (Exception e) { Console.WriteLine(e.Message); }
+        }
         internal void Sair()
         {
             Console.Clear();
@@ -317,6 +386,39 @@ namespace BankGR.Servicos
         internal void Destruir()
         {
             repositorio.DeletarLista();
+        }
+
+        public ContaCorrenteModel Entrar()
+        {
+            Console.Clear();
+            Console.WriteLine("=============================");
+            Console.WriteLine("===                       ===");
+            Console.WriteLine("===         Entrar        ===");
+            Console.WriteLine("===                       ===");
+            Console.WriteLine("=============================");
+
+            Console.Write("Informe o N° da Conta: ");
+            string numeroDaConta = Console.ReadLine() ?? "";
+            Console.Write("Informe a Senha de acesso: ");
+            string senhaDaConta = Console.ReadLine() ?? "";
+
+            try
+            {
+                var conta = repositorio.ObterPorItem(c => c.NumeroConta.Equals(numeroDaConta) || c.SenhaDaConta.Equals(senhaDaConta));
+                if (conta != null)
+                {
+                    Console.WriteLine(conta.ToString());
+                    Console.ReadKey();
+                    return conta;
+                }
+                else
+                {
+                    Console.WriteLine("... Conta não Encontrada  ...");
+                    return null;
+                }
+            }
+            catch (Exception e) { Console.WriteLine(e.Message); }
+            return null;
         }
     }
 }

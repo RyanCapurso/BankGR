@@ -13,11 +13,10 @@ internal class Menu
         Console.WriteLine("===  1 - Cadastrar Conta        ===");
         Console.WriteLine("===  2 - Listar Contas          ===");
         Console.WriteLine("===  3 - Pesquisar Contas       ===");
-        Console.WriteLine("===  4 - Excluir Conta          ===");
-        Console.WriteLine("===  5 - Alterar Dados          ===");
-        Console.WriteLine("===  6 - Sair                   ===");
         Console.WriteLine("===                             ===");
+        Console.WriteLine("===  5 - Acessar Conta          ===");
         Console.WriteLine("===                             ===");
+        Console.WriteLine("===  8 - Sair                   ===");
         Console.WriteLine("===  9 - Destruir Contas        ===");
         Console.WriteLine("===================================");
 

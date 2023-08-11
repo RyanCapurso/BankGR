@@ -13,6 +13,8 @@ servicos
 	- Alterar
 	- ObterPorID
 	- ObterTodos
+	- Depositar
+	- Sacar
 
 menu
 	Exibir
