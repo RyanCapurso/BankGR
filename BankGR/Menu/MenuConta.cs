@@ -7,16 +7,16 @@ internal class MenuConta
     
     public static int Exibir(ContaCorrenteModel cliente)
     {
-        
+        if (cliente == null) return 8;
         Console.Clear();
         Console.WriteLine("====================================");
         Console.WriteLine("===                              ===");
-        Console.WriteLine($"=== Seja Bem vindo {cliente}    ===");
+        Console.WriteLine($"=== Seja Bem vindo ===");
         Console.WriteLine("===  Selecione uma opção         ===");
         Console.WriteLine("===                              ===");             
         Console.WriteLine("===  1 - Depositos               ===");
         Console.WriteLine("===  2 - Saques                  ===");
-        Console.WriteLine("===  3 - Transferir              ===");
+        Console.WriteLine("===  x - Transferir              ===");
         Console.WriteLine("===                              ===");
         Console.WriteLine("===  3 - Alterar Dados           ===");
         Console.WriteLine("===  4 - Excluir Conta           ===");
