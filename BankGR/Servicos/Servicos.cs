@@ -26,11 +26,23 @@ namespace BankGR.Servicos
                 string numeroDaConta = Console.ReadLine() ?? "";
                 try
                 {
-                    var conta = repositorio.ObterPorItem(c => c.NumeroConta.Equals(numeroDaConta));
+                    ContaCorrenteModel? conta = repositorio.ObterPorItem(c => c.NumeroConta.Equals(numeroDaConta));
                     if (conta != null)
                     {
-                        repositorio.Excluir(conta);
-                        Console.WriteLine("...  Conta Removida!  ...");
+                        Console.WriteLine(conta.ToString()); 
+                        Console.Write("  Deseja realmente excluir está conta? Y ou N: ");
+                        string escolha = Console.ReadLine()?.ToLower() ?? "n";
+                        if (escolha == "y")
+                        {
+                            repositorio.Excluir(conta);
+                            Console.WriteLine("\n...  conta removida!  ...");
+                        }
+                        else
+                        {
+                            Console.WriteLine("...  Operação Cancelada  ...");
+                            Thread.Sleep(1000);
+                            return;
+                        }
                     }
                     else
                     {
@@ -45,7 +57,7 @@ namespace BankGR.Servicos
                 {
                     Console.WriteLine("Erro ao excluir conta: " + e.Message);
                 }
-                Console.WriteLine("Deseja Excluir mais alguma conta? Y ou N: ");
+                Console.WriteLine("\nDeseja Excluir mais alguma conta? Y ou N: ");
                 string opcao = Console.ReadLine()?.ToLower() ?? "n";
                 executar = opcao == "y";
             } while (executar);
