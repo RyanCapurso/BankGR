@@ -10,7 +10,46 @@ namespace BankGR.ValidacoesLibrary
         {
             return new CPFValidator().Validate(vrCPF).IsValid;
         }
+
+        public static bool ValidaSenha(string senha)
+        {
+            if (senha.Length < 8)
+            {
+                return false;
+            }
+
+            bool temLetraMaiuscula = false;
+            bool temLetraMinuscula = false;
+            bool temNumero = false;
+            bool temCaractereEspecial = false;
+
+            foreach (char caractere in senha)
+            {
+                if (char.IsUpper(caractere))
+                {
+                    temLetraMaiuscula = true;
+                }
+                else if (char.IsLower(caractere))
+                {
+                    temLetraMinuscula = true;
+                }
+                else if (char.IsDigit(caractere))
+                {
+                    temNumero = true;
+                }
+                else if (char.IsSymbol(caractere) || char.IsPunctuation(caractere))
+                {
+                    temCaractereEspecial = true;
+                }
+            }
+
+            return temLetraMaiuscula && temLetraMinuscula && temNumero && temCaractereEspecial;
+        }
+
+
     }
+
+}
 
     public class CPFValidator : AbstractValidator<string>
     {
@@ -80,4 +119,4 @@ namespace BankGR.ValidacoesLibrary
             }
         }
     }
-}
+

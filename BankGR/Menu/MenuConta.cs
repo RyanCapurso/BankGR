@@ -11,7 +11,7 @@ internal class MenuConta
         Console.Clear();
         Console.WriteLine("====================================");
         Console.WriteLine("===                              ===");
-        Console.WriteLine($"=== Seja Bem vindo ===");
+        Console.WriteLine($"=== Seja Bem vindo {cliente.Nome}    ===");
         Console.WriteLine("===  Selecione uma opção         ===");
         Console.WriteLine("===                              ===");             
         Console.WriteLine("===  1 - Depositos               ===");

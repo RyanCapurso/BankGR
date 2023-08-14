@@ -105,7 +105,19 @@ namespace BankGR.Servicos
                         Console.WriteLine("Erro: " + e.Message);
                     }
 
-                    Console.Write("Saldo Inicial: ");
+                    Console.Write("Digite uma senha: ");
+                    string senha = Console.ReadLine() ?? "";
+                    
+                    if (Validacoes.ValidaSenha(senha))
+                    {
+                        conta.SenhaDaConta = senha;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Senha inválida! A senha deve conter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e caracteres especiais.");
+                    }
+
+                    Console.Write("Saldo Inicial R$ ");
                     double saldo;
                     if (double.TryParse(Console.ReadLine(), out saldo))
                     {

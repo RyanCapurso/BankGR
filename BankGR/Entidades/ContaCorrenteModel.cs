@@ -13,7 +13,6 @@ public class ContaCorrenteModel
         NumeroConta = NumeroConta;
 
     }
-
     public int Id { get; set; } = 0;
     public string? Nome { get; set; } = string.Empty;
     public string Agencia { get; set; } = string.Empty;
